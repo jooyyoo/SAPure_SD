@@ -1,7 +1,85 @@
 <mvc:View controllerName="zc503sd.gw0001.sapuresdfertview.controller.FertView"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+    xmlns:f="sap.f"
+	xmlns:card="sap.f.cards"
+	xmlns:core="sap.ui.core"
+	xmlns:w="sap.ui.integration.widgets">
     <Page id="page" title="{i18n>title}">
-        <content />
+           <SplitContainer
+            id="SplitContDemo"
+            initialDetail="detail"
+            initialMaster="master">
+            <masterPages>
+                <Page
+                    id="master"
+                    title = "Context"
+                    backgroundDesign= "List">
+
+                    <List>
+                        <StandardListItem
+                            title="Home"
+                            type="Navigation"
+                            description=""
+                            icon="sap-icon://home"
+                            press="onPressHome"/>
+                        <StandardListItem
+                            title="Material"
+                            type="Navigation"
+                            description=""
+                            icon="sap-icon://blur"
+                            press="onPressHome"/>
+                        <StandardListItem
+                            title="My Page"
+                            type="Navigation"
+                            description=""
+                            icon="sap-icon://account"
+                            press="onPressHome"/>
+	                </List>
+
+                </Page>
+            </masterPages>
+            <detailPages>
+            
+            <Page
+                id="detail"
+                title="Filght Information"
+                backgroundDesign= "Solid"
+                showNavButton="false">
+                
+                <OverflowToolbar style="Clear">
+                    <ToolbarSpacer width="14rem"></ToolbarSpacer>
+                    <Input id='IMatnr' width="40rem" maxLength="20" placeholder="Material"></Input>
+                    <Button text="Search" icon="sap-icon://search" press="onSearch"></Button>
+                </OverflowToolbar>
+          
+                <ScrollContainer height="auto" width="auto" vertical="true">
+                    <f:GridContainer id="demoGrid">
+                        <!-- <f:layout>
+                            <f:GridContainerSettings rowSize="84px" columnSize="84px" gap="8px" class="sapUiSmallMargin"/>
+                        </f:layout> -->
+
+                        <GenericTile
+                            press="onPress"
+                            header="정수기 1번 "
+                            width="300px"
+                            class="sapUiSmallMargin"
+                            >
+                            <layoutData>
+                                <f:GridContainerItemLayoutData minRows="4" columns="2" />
+                            </layoutData>
+                            <TileContent unit="{Waers}" footer="{Netpr}">
+                                <Image src="images/water1.png" width="110px" height="130px" />
+                                <!-- <ImageContent src="images/water1.png" densityAware="false"/> -->
+                            </TileContent>
+			            </GenericTile>
+                    </f:GridContainer>
+                </ScrollContainer>
+            </Page>
+            </detailPages>
+            </SplitContainer>
     </Page>
 </mvc:View>
