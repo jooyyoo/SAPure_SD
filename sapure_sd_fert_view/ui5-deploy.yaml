@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: zc503sd.gw0001.sapuresdfertview
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://edu.bgis.co.kr:8001
+          client: "100"
+        app:
+          name: ZC503SDGW0001
+          description: "[SD] 정수기 제품 판매 뷰"
+          package: ZC503SD
+          transport: KYSK903626
+        exclude:
+          - /test/
