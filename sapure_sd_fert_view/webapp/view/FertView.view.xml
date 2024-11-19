@@ -6,18 +6,17 @@
     xmlns:l="sap.ui.layout"
     xmlns:t="sap.ui.table"
     xmlns:f="sap.f"
-	xmlns:card="sap.f.cards"
-	xmlns:core="sap.ui.core"
-	xmlns:w="sap.ui.integration.widgets">
+	  xmlns:card="sap.f.cards"
+	  xmlns:core="sap.ui.core"
+	  xmlns:w="sap.ui.integration.widgets">
     <Page id="page" title="{i18n>title}">
     
     <HBox >
     
     <VBox renderType="Bare" alignItems="Start" height="100%">
-		<tnt:SideNavigation id="sideNavigation" selectedKey="walked" expanded="{expand>/expanded}" select="onCollapseExpandPress">
+		<tnt:SideNavigation id="sideNavigation" selectedKey="walked" expanded="{expand>/expanded}">
 			<tnt:NavigationList>
-                <tnt:NavigationListItem text="" icon="{= ${expand>/expanded} ? 'sap-icon://slim-arrow-left' : 'sap-icon://slim-arrow-right' }" 
-                select="onCollapseExpandPress" />
+                <tnt:NavigationListItem text="" icon="{= ${expand>/expanded} ? 'sap-icon://slim-arrow-left' : 'sap-icon://slim-arrow-right' }" select="onCollapseExpandPress" />
 				<tnt:NavigationListItem text="Home" icon="sap-icon://home" />
 				<tnt:NavigationListGroup text="New">
 					<tnt:NavigationListItem text="Material" icon="sap-icon://blur">
@@ -55,16 +54,20 @@
         class="productCatalogContainer"
         items ="{/FertSet}">
         <!-- 제품 타일 -->
-        <VBox class="productTile" width="22%" alignItems="Center">
-          <Image src="images/water1.png" width="80%" class="productImage" />
-          <Text text="{Matnr}" class="productTitle" />
-          <Text text="{Maktx}" class="productDescription" />
-          <Text text="{     parts:[{path:'Netpr'},{path:'Waers'}],
-                            type: 'sap.ui.model.type.Currency',
-                            formatOptions: {showMeasure: true }
-                            }" wrapping="false" 
-                            class="productPrice"/>
-        </VBox>
+        <CustomListItem class="productParent">
+
+          <VBox width="auto" alignItems="Center" >
+            <Image src="images/water1.png" width="80%" class="productImage" press="onPressMatnr"/>
+            <Text text="{Matnr}" class="productTitle" />
+            <Text text="{Maktx}" class="productDescription" />
+            <Text text="{     parts:[{path:'Netpr'},{path:'Waers'}],
+                              type: 'sap.ui.model.type.Currency',
+                              formatOptions: {showMeasure: true }
+                              }" wrapping="false" 
+                              class="productPrice"/>
+          </VBox>
+        </CustomListItem>
+        
       </FlexBox>
     </ScrollContainer>
     </VBox>
