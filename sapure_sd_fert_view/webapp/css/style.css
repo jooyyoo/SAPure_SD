@@ -1,1 +1,46 @@
 /* Enter your custom styles here */
+.productCatalogContainer {
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* 타일 간격 조정 */
+  }
+  
+  .productTile {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: white;
+    width: 30%; /* 타일 너비 고정 (3열 기준) */
+    max-width: 300px; /* 최대 크기 제한 */
+    min-height: 250px; /* 높이 고정 */
+    text-align: center;
+  }
+  
+  .productImage {
+    margin-bottom: 10px;
+  }
+  
+  .productTitle {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .productDescription {
+    color: gray;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .productPrice {
+    font-weight: bold;
+    color: #ff5722;
+    margin-bottom: 5px;
+  }
+  
+  .productFullPrice {
+    text-decoration: line-through;
+    color: gray;
+  }

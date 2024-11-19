@@ -2,6 +2,7 @@
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc" 
     xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
     xmlns:l="sap.ui.layout"
     xmlns:t="sap.ui.table"
     xmlns:f="sap.f"
@@ -9,77 +10,64 @@
 	xmlns:core="sap.ui.core"
 	xmlns:w="sap.ui.integration.widgets">
     <Page id="page" title="{i18n>title}">
-           <SplitContainer
-            id="SplitContDemo"
-            initialDetail="detail"
-            initialMaster="master">
-            <masterPages>
-                <Page
-                    id="master"
-                    title = "Context"
-                    backgroundDesign= "List">
+    
+    <HBox >
+    
+    <VBox renderType="Bare" alignItems="Start" height="100%">
+		<tnt:SideNavigation id="sideNavigation" selectedKey="walked" expanded="{expand>/expanded}" select="onCollapseExpandPress">
+			<tnt:NavigationList>
+                <tnt:NavigationListItem text="" icon="{= ${expand>/expanded} ? 'sap-icon://slim-arrow-left' : 'sap-icon://slim-arrow-right' }" 
+                select="onCollapseExpandPress" />
+				<tnt:NavigationListItem text="Home" icon="sap-icon://home" />
+				<tnt:NavigationListGroup text="New">
+					<tnt:NavigationListItem text="Material" icon="sap-icon://blur">
+						<tnt:NavigationListItem text="정수기" id="fert"/>
+						<tnt:NavigationListItem text="부품" id="bom"/>
+					</tnt:NavigationListItem>
+				</tnt:NavigationListGroup>
+				<tnt:NavigationListGroup text="Recently used">
+					<tnt:NavigationListItem text="MyPage" icon="sap-icon://kpi-managing-my-area" />
+				</tnt:NavigationListGroup>
+				<tnt:NavigationListGroup text="Restricted" enabled="false">
+					<tnt:NavigationListItem text="Running" icon="sap-icon://physical-activity" />
+					<tnt:NavigationListItem text="Scissors" icon="sap-icon://scissors" />
+				</tnt:NavigationListGroup>
+				<tnt:NavigationListItem text="Transport" icon="sap-icon://passenger-train" />
+			</tnt:NavigationList>
+			<tnt:fixedItem>
+				<tnt:NavigationList>
+					<tnt:NavigationListItem text="Bar Chart" icon="sap-icon://bar-chart" />
+					<tnt:NavigationListItem selectable="false" href="https://sap.com" target="_blank" text="External Link" icon="sap-icon://attachment" />
+					<tnt:NavigationListItem text="Compare" icon="sap-icon://compare" />
+				</tnt:NavigationList>
+			</tnt:fixedItem>
+		</tnt:SideNavigation>
+	</VBox>
+    
+    <VBox>
 
-                    <List>
-                        <StandardListItem
-                            title="Home"
-                            type="Navigation"
-                            description=""
-                            icon="sap-icon://home"
-                            press="onPressHome"/>
-                        <StandardListItem
-                            title="Material"
-                            type="Navigation"
-                            description=""
-                            icon="sap-icon://blur"
-                            press="onPressHome"/>
-                        <StandardListItem
-                            title="My Page"
-                            type="Navigation"
-                            description=""
-                            icon="sap-icon://account"
-                            press="onPressHome"/>
-	                </List>
-
-                </Page>
-            </masterPages>
-            <detailPages>
-            
-            <Page
-                id="detail"
-                title="Filght Information"
-                backgroundDesign= "Solid"
-                showNavButton="false">
-                
-                <OverflowToolbar style="Clear">
-                    <ToolbarSpacer width="14rem"></ToolbarSpacer>
-                    <Input id='IMatnr' width="40rem" maxLength="20" placeholder="Material"></Input>
-                    <Button text="Search" icon="sap-icon://search" press="onSearch"></Button>
-                </OverflowToolbar>
-          
-                <ScrollContainer height="auto" width="auto" vertical="true">
-                    <f:GridContainer id="demoGrid">
-                        <!-- <f:layout>
-                            <f:GridContainerSettings rowSize="84px" columnSize="84px" gap="8px" class="sapUiSmallMargin"/>
-                        </f:layout> -->
-
-                        <GenericTile
-                            press="onPress"
-                            header="정수기 1번 "
-                            width="300px"
-                            class="sapUiSmallMargin"
-                            >
-                            <layoutData>
-                                <f:GridContainerItemLayoutData minRows="4" columns="2" />
-                            </layoutData>
-                            <TileContent unit="{Waers}" footer="{Netpr}">
-                                <Image src="images/water1.png" width="110px" height="130px" />
-                                <!-- <ImageContent src="images/water1.png" densityAware="false"/> -->
-                            </TileContent>
-			            </GenericTile>
-                    </f:GridContainer>
-                </ScrollContainer>
-            </Page>
-            </detailPages>
-            </SplitContainer>
+    <ScrollContainer vertical="true" width="100%">
+      <FlexBox
+        direction="Row"
+        wrap="Wrap"
+        alignItems="Start"
+        justifyContent="SpaceAround"
+        class="productCatalogContainer"
+        items ="{/FertSet}">
+        <!-- 제품 타일 -->
+        <VBox class="productTile" width="22%" alignItems="Center">
+          <Image src="images/water1.png" width="80%" class="productImage" />
+          <Text text="{Matnr}" class="productTitle" />
+          <Text text="{Maktx}" class="productDescription" />
+          <Text text="{     parts:[{path:'Netpr'},{path:'Waers'}],
+                            type: 'sap.ui.model.type.Currency',
+                            formatOptions: {showMeasure: true }
+                            }" wrapping="false" 
+                            class="productPrice"/>
+        </VBox>
+      </FlexBox>
+    </ScrollContainer>
+    </VBox>
+    </HBox>
     </Page>
 </mvc:View>
