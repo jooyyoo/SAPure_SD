@@ -1,0 +1,7 @@
+<mvc:View controllerName="zc503sd.gw0004.sapuresdauthview.controller.AuthView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content />
+    </Page>
+</mvc:View>
