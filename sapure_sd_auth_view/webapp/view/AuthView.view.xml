@@ -15,7 +15,7 @@
                 <Input id="Iid" type="Text" placeholder="아이디를 입력해주세요" showClearIcon="true" class="inputField" />
                 <Label text="비밀번호" class="textColor"/>
                 <Input type="Password" placeholder="비밀번호를 입력해주세요" width="20rem" class="inputField" showClearIcon="true"/>
-                <Link id="Ipw" text="비밀번호를 잊으셨나요?" class="forgotPassword" />
+                <Link id="Ipw" text="비밀번호를 잊으셨나요?" class="forgotPassword" press="onLinkPress" ariaHasPopup="Dialog" />
                 <Button
                     press="onPressLogin"
                     text="로그인"
