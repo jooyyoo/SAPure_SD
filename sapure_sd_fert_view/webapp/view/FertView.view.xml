@@ -33,26 +33,22 @@
         <!-- Side Navigation -->
         <tnt:sideContent>
             <tnt:SideNavigation id="sideNavigation" selectedKey="walked" expanded="{expand>/expanded}">
-                <tnt:NavigationList>
+            <tnt:item>
+            <tnt:NavigationList>
                     <tnt:NavigationListItem text="" 
                         icon="{= ${expand>/expanded} ? 'sap-icon://slim-arrow-left' : 'sap-icon://slim-arrow-right' }" 
                         select="onCollapseExpandPress" />
                     <tnt:NavigationListItem text="Home" icon="sap-icon://home" />
-                    <tnt:NavigationListGroup text="New">
+                    
                         <tnt:NavigationListItem text="Material" icon="sap-icon://blur">
                             <tnt:NavigationListItem text="정수기" id="fert"/>
                             <tnt:NavigationListItem text="부품" id="bom"/>
                         </tnt:NavigationListItem>
-                    </tnt:NavigationListGroup>
-                    <tnt:NavigationListGroup text="Recently used">
+                    
                         <tnt:NavigationListItem text="MyPage" icon="sap-icon://kpi-managing-my-area" />
-                    </tnt:NavigationListGroup>
-                    <tnt:NavigationListGroup text="Restricted" enabled="false">
-                        <tnt:NavigationListItem text="Running" icon="sap-icon://physical-activity" />
-                        <tnt:NavigationListItem text="Scissors" icon="sap-icon://scissors" />
-                    </tnt:NavigationListGroup>
-                    <tnt:NavigationListItem text="Transport" icon="sap-icon://passenger-train" />
                 </tnt:NavigationList>
+            </tnt:item>
+                
                 <tnt:fixedItem>
                     <tnt:NavigationList>
                         <tnt:NavigationListItem text="Bar Chart" icon="sap-icon://bar-chart" />
@@ -76,7 +72,7 @@
                     <!-- 제품 타일 -->
                     <CustomListItem class="productParent">
                         <VBox width="auto" alignItems="Center" >
-                            <Image src="images/water1.png" width="80%" class="productImage" press="onPressMatnr"/>
+                            <Image src="https://drive.google.com/file/d/1kGZUMrr8m94jRjULvQRtFyZc2idSjIam/view?usp=sharing" width="80%" class="productImage" press="onPressMatnr"/>
                             <Text text="{Matnr}" class="productTitle" />
                             <Text text="{Maktx}" class="productDescription" />
                             <Text text="{     parts:[{path:'Netpr'},{path:'Waers'}],
