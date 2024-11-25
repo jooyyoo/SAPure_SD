@@ -6,7 +6,7 @@
     padding: 20px;
     justify-content: center;
     align-items: center;
-    background-image: url('/images/back2.png');
+    /* background-image: url('/images/back2.png'); */
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -64,4 +64,8 @@
 .textColor{
     color:#1555df;
     font-weight: bold;
+}
+
+.customPadding {
+    padding-left: 16px; /* 원하는 값으로 변경 가능 */
 }
