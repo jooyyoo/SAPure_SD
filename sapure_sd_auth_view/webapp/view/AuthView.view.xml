@@ -11,16 +11,29 @@
                 <Title text="LOG IN" level="H2" class="loginTitle" />
             </VBox>
             <VBox alignItems="Start" width="100%">
+            <HBox justifyContent="SpaceBetween" alignItems="Center" width="63%">
                 <Label text="아이디" class="textColor"/>
-                <Input id="Iid" type="Text" placeholder="아이디를 입력해주세요" showClearIcon="true" class="inputField" />
+                <Input id="Iid" type="Text" placeholder="아이디를 입력해주세요" width="15rem" showClearIcon="true" class="inputField" />
+            </HBox>
+            <HBox justifyContent="SpaceBetween" alignItems="Center" width="93%">
                 <Label text="비밀번호" class="textColor"/>
-                <Input id="Ipw" type="Password" placeholder="비밀번호를 입력해주세요" width="20rem" class="inputField" showClearIcon="true"/>
-                <Link text="비밀번호를 잊으셨나요?" class="forgotPassword" press="onLinkPress" ariaHasPopup="Dialog" />
+                <Input id="Ipw" type="Password" placeholder="비밀번호를 입력해주세요" width="15rem" class="inputField" showClearIcon="true"/>
                 <Button
                     press="onPressLogin"
                     text="로그인"
                     type="Default"
                     class="loginButton textColor" />
+                <Button 
+                    press="onPressJoin"
+                    text="회원가입"
+                    type="Default"
+                    class="textColor"></Button>
+            </HBox>
+            <HBox >
+                <Link text="비밀번호를 잊으셨나요?" class="forgotPassword" press="onLinkPress" ariaHasPopup="Dialog"/>
+            </HBox>
+                
+                
             </VBox>
         </VBox>
     </FlexBox>
