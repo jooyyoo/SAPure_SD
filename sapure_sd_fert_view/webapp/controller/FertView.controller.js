@@ -21,6 +21,10 @@ sap.ui.define([
                 oModel.setProperty("/expanded", !bExpanded); // expanded 상태 토글 
             },
 
+            onBomSelect:function(){
+                sap.m.MessageToast.show("죄송합니다. \n재정비 중인 페이지입니다");
+            },
+
             onPressMatnr: function (oEvent) {
 
                 console.log("Press 이벤트 발생:", oEvent);
@@ -37,14 +41,6 @@ sap.ui.define([
                     console.log("선택된 항목이 없습니다.");
                 }
             },
-
-            formatImagePath: function (sMatnr) {
-                // Matnr 값을 기반으로 이미지 경로 반환
-                if (!sMatnr) {
-                    return ""; // Matnr 값이 없으면 빈 문자열 반환
-                }
-                return sap.ui.require.toUrl("zc503sd/gw0001/sapuresdfertview/images/" + sMatnr + ".png");
-            }
 
         });
     });

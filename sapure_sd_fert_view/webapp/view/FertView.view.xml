@@ -42,7 +42,7 @@
                     
                         <tnt:NavigationListItem text="Material" icon="sap-icon://blur">
                             <tnt:NavigationListItem text="정수기" id="fert"/>
-                            <tnt:NavigationListItem text="부품" id="bom"/>
+                            <tnt:NavigationListItem text="부품" id="bom" select="onBomSelect"/>
                         </tnt:NavigationListItem>
                     
                         <tnt:NavigationListItem text="MyPage" icon="sap-icon://kpi-managing-my-area" />
@@ -72,7 +72,7 @@
                     <!-- 제품 타일 -->
                     <CustomListItem class="productParent">
                         <VBox width="auto" alignItems="Center" >
-                            <Image src="{path: 'Matnr', formatter: '.formatImagePath'}" width="11rem" height="15em" class="productImage" press="onPressMatnr"/>
+                            <Image src="/sap/bc/ui5_ui5/sap/zc503sdgw0001/images/{Matnr}.png" width="11rem" height="15em" class="productImage" press="onPressMatnr"/>
                             <Text text="{Matnr}" class="productTitle" />
                             <Text text="{Maktx}" class="productDescription" />
                             <Text text="{     parts:[{path:'Netpr'},{path:'Waers'}],
