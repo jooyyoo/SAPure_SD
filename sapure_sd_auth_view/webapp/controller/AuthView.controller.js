@@ -1,22 +1,14 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/Dialog",
-    "sap/m/List",
-    "sap/m/StandardListItem",
-    "sap/m/Text",
-    "sap/m/Button",
-    "sap/m/library",
-    "sap/ui/layout/HorizontalLayout",
-    "sap/ui/layout/VerticalLayout",
-    "sap/m/TextArea",
     "sap/ui/model/Binding",
+    "sap/ui/core/UIComponent"
 ],
-    function (Controller, Dialog, List, StandardListItem, Text, Button, library, HorizontalLayout, VerticalLayout, TextArea,) {
+    function (Controller, UIComponent) {
         "use strict";
 
         return Controller.extend("zc503sd.gw0004.sapuresdauthview.controller.AuthView", {
             onInit: function () {
-
+                
             },
 
             onPressLogin: function () {
@@ -220,6 +212,10 @@ sap.ui.define([
                 this.oResizableDialog.open();
 
             },
+
+            onPressJoin:function(){
+                
+            }
 
         });
     });
