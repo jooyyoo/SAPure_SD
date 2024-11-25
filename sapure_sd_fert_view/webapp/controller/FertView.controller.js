@@ -45,6 +45,6 @@ sap.ui.define([
                 }
                 return sap.ui.require.toUrl("zc503sd/gw0001/sapuresdfertview/images/" + sMatnr + ".png");
             }
-    
+
         });
     });
