@@ -72,7 +72,7 @@
                     <!-- 제품 타일 -->
                     <CustomListItem class="productParent">
                         <VBox width="auto" alignItems="Center" >
-                            <Image src="https://drive.google.com/file/d/1kGZUMrr8m94jRjULvQRtFyZc2idSjIam/view?usp=sharing" width="80%" class="productImage" press="onPressMatnr"/>
+                            <Image src="{path: 'Matnr', formatter: '.formatImagePath'}" width="11rem" height="15em" class="productImage" press="onPressMatnr"/>
                             <Text text="{Matnr}" class="productTitle" />
                             <Text text="{Maktx}" class="productDescription" />
                             <Text text="{     parts:[{path:'Netpr'},{path:'Waers'}],

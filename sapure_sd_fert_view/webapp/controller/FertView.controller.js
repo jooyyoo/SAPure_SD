@@ -37,5 +37,14 @@ sap.ui.define([
                     console.log("선택된 항목이 없습니다.");
                 }
             },
+
+            formatImagePath: function (sMatnr) {
+                // Matnr 값을 기반으로 이미지 경로 반환
+                if (!sMatnr) {
+                    return ""; // Matnr 값이 없으면 빈 문자열 반환
+                }
+                return sap.ui.require.toUrl("zc503sd/gw0001/sapuresdfertview/images/" + sMatnr + ".png");
+            }
+    
         });
     });
