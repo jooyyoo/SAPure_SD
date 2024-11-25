@@ -14,7 +14,7 @@ sap.ui.define([
             onPressLogin: function () {
 
                 //서버에서 해당 아이디를 가진 고객을 read
-                let oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZC503SDGW0001_SRV/");
+                let oModel = this.getView().getModel();
                 
                 console.log(oModel);
 
