@@ -17,7 +17,7 @@
 
                 <!-- 메뉴 버튼 -->
                 <Button text="제품" type="Transparent"/>
-                <Button text="코웨이 매장" type="Transparent" />
+                <Button text="SAPure 매장" type="Transparent" />
                 <Button text="서비스" type="Transparent" />
                 <Button text="이벤트/혜택" type="Transparent" />
 
@@ -61,7 +61,7 @@
 
         <!-- Main Content -->
         <tnt:mainContents>
-            <ScrollContainer vertical="true" width="100%" height="100%">
+            <ScrollContainer vertical="true" width="100%" height="100%" class="FertscrollContainer">
                 <FlexBox
                     direction="Row"
                     wrap="Wrap"

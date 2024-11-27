@@ -100,6 +100,13 @@
           "target": [
             "TargetFertView"
           ]
+        },
+        {
+          "name": "RouteDetailView",
+          "pattern": "detail/{id}",
+          "target": [
+            "TargetDetailView"
+          ]
         }
       ],
       "targets": {
@@ -109,6 +116,13 @@
           "clearControlAggregation": false,
           "viewId": "FertView",
           "viewName": "FertView"
+        },
+        "TargetDetailView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "DetailView",
+          "viewName": "DetailView"
         }
       }
     },

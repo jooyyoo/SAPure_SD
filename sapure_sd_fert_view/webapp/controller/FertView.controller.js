@@ -21,22 +21,21 @@ sap.ui.define([
                 oModel.setProperty("/expanded", !bExpanded); // expanded 상태 토글 
             },
 
-            onBomSelect:function(){
+            onBomSelect: function () {
                 sap.m.MessageToast.show("죄송합니다. \n재정비 중인 페이지입니다");
             },
 
             onPressMatnr: function (oEvent) {
 
-                console.log("Press 이벤트 발생:", oEvent);
                 var oSelectedItem = oEvent.getSource();
                 var oContext = oSelectedItem.getBindingContext();
 
-                console.log("BindingContext:", oContext); // 컨텍스트 정보 출력
-
                 if (oContext) {
+                    var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                     var sMatnr = oContext.getProperty("Matnr");
+
+                    oRouter.navTo("RouteDetailView", { id: sMatnr });
                     console.log("Matnr 값: ", sMatnr);  // Matnr 값이 잘 출력되는지 확인
-                    sap.m.MessageToast.show("제품 번호: " + sMatnr);
                 } else {
                     console.log("선택된 항목이 없습니다.");
                 }

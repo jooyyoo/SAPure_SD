@@ -1,0 +1,316 @@
+<mvc:View
+	controllerName="zc503sd.gw0001.sapuresdfertview.controller.DetailView"
+	displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:layout="sap.ui.layout" 
+    xmlns="sap.m" 
+    xmlns:tnt="sap.tnt">
+    <!-- ToolPage 구조 -->
+    <tnt:ToolPage>
+        <!-- Header -->
+        <tnt:header>
+            <tnt:ToolHeader>
+                <!-- 로고 및 제목 -->
+                <Button icon="sap-icon://home" tooltip="Home" type="Transparent" />
+                <Title text="{i18n>title}" class="sapUiTinyMarginBegin" />
+                
+                <ToolbarSpacer />
+                
+                <!-- 메뉴 버튼 -->
+                <Button text="제품" type="Transparent" />
+                <Button text="SAPure 매장" type="Transparent" />
+                <Button text="서비스" type="Transparent" />
+                <Button text="이벤트/혜택" type="Transparent" />
+                
+                <ToolbarSpacer />
+                
+                <!-- 검색 및 기타 버튼 -->
+                <Button icon="sap-icon://search" tooltip="Search" type="Transparent" />
+                <Button icon="sap-icon://person-placeholder" tooltip="User Profile" type="Transparent" />
+                <Button icon="sap-icon://cart" tooltip="Shopping Cart" type="Transparent" />
+            </tnt:ToolHeader>
+        </tnt:header>
+        
+        <!-- Side Navigation -->
+        <tnt:sideContent>
+            <tnt:SideNavigation id="sideNavigation" selectedKey="walked" expanded="{expand>/expanded}">
+            <tnt:item>
+            <tnt:NavigationList>
+                    <tnt:NavigationListItem text="" 
+                        icon="{= ${expand>/expanded} ? 'sap-icon://slim-arrow-left' : 'sap-icon://slim-arrow-right' }" 
+                        select="onCollapseExpandPress" />
+                    <tnt:NavigationListItem text="Home" icon="sap-icon://home" />
+
+                        <tnt:NavigationListItem text="Material" icon="sap-icon://blur">
+                            <tnt:NavigationListItem text="정수기" id="fert"/>
+                            <tnt:NavigationListItem text="부품" id="bom"/>
+                        </tnt:NavigationListItem>
+
+                        <tnt:NavigationListItem text="MyPage" icon="sap-icon://kpi-managing-my-area" />
+                </tnt:NavigationList>
+            </tnt:item>
+
+                <tnt:fixedItem>
+                    <tnt:NavigationList>
+                        <tnt:NavigationListItem text="Bar Chart" icon="sap-icon://bar-chart" />
+                        <tnt:NavigationListItem selectable="false" href="https://sap.com/" target="_blank" text="External Link" icon="sap-icon://attachment" />
+                        <tnt:NavigationListItem text="Compare" icon="sap-icon://compare" />
+                    </tnt:NavigationList>
+                </tnt:fixedItem>
+            </tnt:SideNavigation>
+        </tnt:sideContent>
+
+        <!-- Main Content -->
+        <tnt:mainContents>
+            <Panel>
+                <content>
+                    <!-- Centering Wrapper -->
+                    <VBox class="centeredContainer" justifyContent="Center" alignItems="Center" >
+                        <!-- ScrollContainer 적용 -->
+                        <ScrollContainer width="auto" vertical="true" horizontal="false" class="scrollContainer">
+                            <!-- Breadcrumbs -->
+                            <Breadcrumbs >
+                                <Link text="홈" />
+                                <Link text="제품" />
+                                <Link text="정수기" />
+                            </Breadcrumbs>
+                            
+                            <!-- Main Content -->
+                            <HBox width="100%" justifyContent="SpaceBetween" alignItems="Stretch" class="mainContent">
+                                <!-- Product Image Carousel -->
+                                <VBox width="50%" class="imageSection" alignItems="Center">
+                                    <Carousel id="productImages" loop="true" showPageIndicator="true" width="100%">
+                                        <Image src="/sap/bc/ui5_ui5/sap/zc503sdgw0001/images/{oModel>/selectedId}.png" alt="제품 정면 이미지" />
+                                        <Image src="/sap/bc/ui5_ui5/sap/zc503sdgw0002/images/water1/water1_2.png" alt="제품 측면 이미지" />
+                                        <Image src="/sap/bc/ui5_ui5/sap/zc503sdgw0002/images/water1/water1_3.png" alt="제품 뒷면 이미지" />
+                                    </Carousel>
+                                </VBox>
+                                
+                                <!-- Product Info -->
+                                <VBox width="50%" class="descriptionSection" justifyContent="Start" alignItems="Stretch" id="Vbox">
+                                    <ObjectHeader 
+                                         title="{oModel>/selectedDes}" 
+                                         number="{oModel>/selectedId}" 
+                                         numberUnit="4.8 ★ (1,216)" 
+                                         class="textLeftAlign" />
+                
+                                    <!-- 기능 섹션 -->
+                                    <VBox class="descriptionPadding">
+                                        <Title text="기능" level="H5" class="textLeftAlign" />
+                                        <SegmentedButton class="textLeftAlign">
+                                            <Button text="정수 전용" />
+                                        </SegmentedButton>
+                                    </VBox>
+                                    
+                                    <!-- 색상 섹션 -->
+                                    <VBox class="descriptionPadding sapUiSmallMarginTop">
+                                        <Title text="색상" level="H5" class="textLeftAlign" />
+                                        <FlexBox justifyContent="SpaceBetween" alignItems="Center" class="buttonContainer">
+                                            <!-- 색상 버튼 -->
+                                            <SegmentedButton class="textLeftAlign">
+                                                <Button text="화이트" width="70px" />
+                                                <Button text="핑크" width="60px" />
+                                                <Button text="실버" width="60px" />
+                                            </SegmentedButton>
+                                            
+                                            <!-- 수량 체크 및 구매 관련 버튼 -->
+                                            <VBox alignItems="Center" class="actionSection" >
+
+                                                <HBox alignItems="Center">
+                                                    <Label text="가격 : " class="priceLabel" />
+                                                    <Text text="  " class="priceLabel" />
+                                                    <Text text="{
+                                                        parts:[{path:'oModel>/0/Netpr'},{path:'oModel>/0/Waers'}],
+                                                        type: 'sap.ui.model.type.Currency',
+                                                        formatOptions: {showMeasure: true }
+                                                        }" wrapping="false"  class="priceLabel" />
+                                                </HBox>
+
+                                                <!-- 수량 선택 -->
+                                                <HBox alignItems="Center" class="quantitySelector" >
+                                                    <StepInput
+                                                        value="{value}"
+                                                        displayValuePrecision="{displayValuePrecision}"
+                                                        min="0"
+                                                        max="999"
+                                                        width="100px"
+                                                        step="{step}"
+                                                        largerStep="{largerStep}"
+                                                        stepMode="{stepMode}"
+                                                        valueState="{valueState}"
+                                                        enabled="{enabled}"
+                                                        editable="{editable}"
+                                                        description="{description}"
+                                                        fieldWidth="{fieldWidth}"
+                                                        textAlign="{textAlign}"
+                                                        validationMode="{validationMode}"
+                                                        change="onChange"/>
+                                                </HBox>
+                                                
+                                                <!-- 장바구니 및 구매 버튼 -->
+                                                <SegmentedButton class="textRightAlign">
+                                                    <Button text="장바구니" icon="sap-icon://cart-4" width="100px" />
+                                                    <Button text="구매" icon="sap-icon://credit-card" width="70px" />
+                                                </SegmentedButton>
+                                            </VBox>
+                                        </FlexBox>
+                                    </VBox>
+                                </VBox>
+                            </HBox>
+                            
+                            <!-- Tabs for Rental and Purchase -->
+                            <IconTabBar >
+                                <items >
+                                    <IconTabFilter text="상세 설명" >
+                                        <Panel class="tableContainer" width="100%">
+                                            <content>
+                                                <VBox alignItems="Center" justifyContent="Center" width="100%">
+                                                    <Text text=" " />
+                                                    <Text text=" " />
+                                                    <Text text="* 모든 제품 이미지는 촬영 컷으로 제품 색상은 모니터 해상도, 밝기 설정 및 컴퓨터 사양에 따라 실제 제품과 차이가 있을 수 있습니다. *"
+                                                        class="smallGrayText" />
+                                                    <Text text=" " />
+                                                    <Text text=" " />
+                                                </VBox>
+
+                                                <!-- sap.ui.layout.Grid로 반응형 레이아웃 구현 -->
+                                                <layout:Grid
+                                                    xmlns:layout="sap.ui.layout"
+                                                    width="100%"
+                                                    defaultSpan="L12 M12 S12"
+                                                    hSpacing="1"
+                                                    vSpacing="1">
+                                                    <layout:content>
+                                                        <Image 
+                                                            src="/sap/bc/ui5_ui5/sap/zc503sdgw0002/images/water1/ice.gif"
+                                                            alt="얼음 움짤" 
+                                                            width="100%" 
+                                                            height="auto" />
+
+                                                        <Image 
+                                                            src="/sap/bc/ui5_ui5/sap/zc503sdgw0002/images/water1/ice_info.gif"
+                                                            alt="얼음 차이점1" 
+                                                            width="100%" 
+                                                            height="auto" />
+
+                                                        <Image 
+                                                            src="/sap/bc/ui5_ui5/sap/zc503sdgw0002/images/water1/ice_diff.jpg"
+                                                            alt="얼음 차이점2" 
+                                                            width="100%" 
+                                                            height="auto" />
+
+                                                        <Image 
+                                                            src="/sap/bc/ui5_ui5/sap/zc503sdgw0002/images/water1/water_control.png"
+                                                            alt="정수기 컨트롤" 
+                                                            width="100%" 
+                                                            height="auto" />
+
+                                                        <Image 
+                                                            src="/sap/bc/ui5_ui5/sap/zc503sdgw0002/images/water1/manage.jpg"
+                                                            alt="정수기 컨트롤" 
+                                                            width="100%" 
+                                                            height="auto" />
+
+                                                        <Image 
+                                                            src="/sap/bc/ui5_ui5/sap/zc503sdgw0002/images/water1/authentication.jpg"
+                                                            alt="자가 진단" 
+                                                            width="100%" 
+                                                            height="auto"
+                                                            class="awardImage" />
+                                                    </layout:content>
+                                                </layout:Grid>
+                                            </content>
+                                        </Panel>
+                                    </IconTabFilter>
+
+                                    <IconTabFilter text="스펙" >
+                                        <Panel class="tableContainer">
+                                            <content >
+                                                <VBox class="specContainer" >
+                                                    <!-- 테이블 형식 스펙 -->
+                                                    <Table inset="false" >
+                                                        <columns>
+                                                            <Column>
+                                                                <Text text="항목" />
+                                                            </Column>
+                                                            <Column>
+                                                                <Text text="내용" />
+                                                            </Column>
+                                                        </columns>
+                                                        <items>
+                                                            <ColumnListItem>
+                                                                <cells>
+                                                                    <Text text="모델명" />
+                                                                    <Text text="CPI-7400N" />
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem>
+                                                                <cells>
+                                                                    <Text text="주요기능" />
+                                                                    <Text text="듀얼냉각시스템, UV케어, 스마트 원격 진단, 음성 지원" />
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem>
+                                                                <cells>
+                                                                    <Text text="크기" />
+                                                                    <Text text="240x473x465mm" />
+                                                                </cells>
+                                                            </ColumnListItem>   
+                                                            <ColumnListItem>
+                                                                <cells>
+                                                                    <Text text="무게" />
+                                                                    <Text text="16.1kg" />
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem>
+                                                                <cells>
+                                                                    <Text text="소비전력" />
+                                                                    <Text text="냉수 0.7A, 제빙: 80W" />
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem>
+                                                                <cells>
+                                                                    <Text text="필터구성" />
+                                                                    <Text text="나노트랩필터(4개월), 플러스이노센스필터(4개월)" />
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem>
+                                                                <cells>
+                                                                    <Text text="출시년도" />
+                                                                    <Text text="2024년 4월" />
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem>
+                                                                <cells>
+                                                                    <Text text="제조사" />
+                                                                    <Text text="코웨이" />
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem>
+                                                                <cells>
+                                                                    <Text text="제조국가" />
+                                                                    <Text text="한국" />
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                        </items>
+                                                    </Table>
+                                                </VBox>
+                                            </content>
+                                        </Panel>
+                                    </IconTabFilter>
+                                </items>
+                            </IconTabBar>
+                        </ScrollContainer>
+                    </VBox>
+
+                    <!-- Bottom Buttons -->
+                    <Toolbar>
+                        <ToolbarSpacer />
+                        <Button text="공유" icon="sap-icon://share" type="Transparent" />
+                        <Button text="장바구니" icon="sap-icon://cart" type="Emphasized" />
+                    </Toolbar>
+                </content>
+            </Panel>
+        </tnt:mainContents>
+    </tnt:ToolPage>
+</mvc:View>
