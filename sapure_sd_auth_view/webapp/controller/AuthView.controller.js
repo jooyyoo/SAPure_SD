@@ -212,8 +212,10 @@ sap.ui.define([
             },
 
             onPressJoin:function(){
-                
-            }
 
+                console.log("회원가입 클릭");
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("RouteJoinView");
+            }
         });
     });
