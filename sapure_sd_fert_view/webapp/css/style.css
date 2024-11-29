@@ -120,3 +120,138 @@
 .FertscrollContainer::-webkit-scrollbar {
   display: none; /* 크롬, 사파리 */
 }
+
+.textLeftAlign {
+  margin-left: 0;
+}
+
+.descriptionPadding {
+  padding-left: 50px; /* 원하는 왼쪽 패딩 값 */
+}
+
+.buttonContainer {
+  margin-top: 10px; /* 버튼 위 여백 */
+  margin-bottom: 10px; /* 버튼 아래 여백 */
+}
+.quantitySelector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantityInput {
+  text-align: center;
+  padding: 0.3rem;
+}
+
+.quantityButton {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.actionSection {
+  padding-right: 50px;
+  padding-bottom: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.awardTitleBox {
+  margin-bottom: 20px;
+}
+
+.awardMainTitle {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+.awardSubTitle {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+.awardRow {
+  margin-top: 20px;
+}
+
+.awardBox {
+  width: 220px;
+  height: 200px;
+  text-align: center;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px; /* 각 박스에 10px 간격 추가 */
+
+  /* Flexbox로 중앙 정렬 */
+  display: flex; /* 플렉스박스 활성화 */
+  flex-direction: column; /* 요소를 세로로 정렬 */
+  justify-content: center; /* 세로 방향 중앙 정렬 */
+  align-items: center; /* 가로 방향 중앙 정렬 */
+}
+.awardHeader {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.awardSubheader {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.awardDescription {
+  font-size: 8px;
+  color: #333;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.awardDescription2 {
+  font-size: 8px;
+  color: #333;
+  font-weight: bold;
+  margin-top: 5px;
+  text-align: left;
+}
+.awardBox1 {
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px; /* 각 박스에 10px 간격 추가 */
+}
+.awardImage {
+  padding-bottom: 90px;
+}
+
+.priceLabel {
+  padding-right: 10px;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.priceValue {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.specContainer{
+  width: auto;
+}
+
+.customTable{
+  justify-content: center;
+}
+
+.iceclass{
+  padding: 10px;
+  justify-content: center;
+}

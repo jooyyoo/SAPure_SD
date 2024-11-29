@@ -104,14 +104,7 @@
                                     
                                     <!-- 색상 섹션 -->
                                     <VBox class="descriptionPadding sapUiSmallMarginTop">
-                                        <Title text="색상" level="H5" class="textLeftAlign" />
-                                        <FlexBox justifyContent="SpaceBetween" alignItems="Center" class="buttonContainer">
-                                            <!-- 색상 버튼 -->
-                                            <SegmentedButton class="textLeftAlign">
-                                                <Button text="화이트" width="70px" />
-                                                <Button text="핑크" width="60px" />
-                                                <Button text="실버" width="60px" />
-                                            </SegmentedButton>
+                                        <FlexBox justifyContent="End" alignItems="Center" class="buttonContainer">
                                             
                                             <!-- 수량 체크 및 구매 관련 버튼 -->
                                             <VBox alignItems="Center" class="actionSection" >
