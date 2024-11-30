@@ -113,7 +113,7 @@
                                                     <Label text="가격 : " class="priceLabel" />
                                                     <Text text="  " class="priceLabel" />
                                                     <Text text="{
-                                                        parts:[{path:'oModel>/0/Netpr'},{path:'oModel>/0/Waers'}],
+                                                        parts:[{path:'oModel>/oData/0/Netpr'},{path:'oModel>/oData/0/Waers'}],
                                                         type: 'sap.ui.model.type.Currency',
                                                         formatOptions: {showMeasure: true }
                                                         }" wrapping="false"  class="priceLabel" />

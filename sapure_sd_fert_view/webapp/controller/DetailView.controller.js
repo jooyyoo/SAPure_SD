@@ -9,6 +9,9 @@ sap.ui.define([
 
         onInit: function () {
 
+            var oExpandModel = new sap.ui.model.json.JSONModel({ expanded: true });
+            this.getView().setModel(oExpandModel, "expand");
+
             const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.getRoute("RouteDetailView").attachPatternMatched(this._onObjectMatched, this);
 
@@ -26,10 +29,17 @@ sap.ui.define([
 
             oODataModel.read("/DetailSet", {
                 success: function (OData) {
-                    console.log("DetailSet data loaded:", OData.results);
+
+                    var sortedData = OData.results.sort(function (a, b) {
+                        if (a.Matnr < b.Matnr) return -1; // Matnr 기준 오름차순
+                        if (a.Matnr > b.Matnr) return 1;
+                        return 0;
+                    });
+
+                    console.log("DetailSet data after sorting:", sortedData);
 
                     // JSON 모델에 데이터 설정
-                    oModel.setData({ oData: OData.results });
+                    oModel.setData({ oData: sortedData });
                     this.getView().setModel(oModel, "oModel");
 
                     // 데이터 로드 완료 플래그 설정
@@ -49,6 +59,13 @@ sap.ui.define([
             this._startCarouselAutoSlide();
         },
 
+        onCollapseExpandPress() {
+            const oSideNavigation = this.byId("sideNavigation"),
+                bExpanded = oSideNavigation.getExpanded();
+
+            oSideNavigation.setExpanded(!bExpanded);
+        },
+
         processSelectMaktx: function (sId) {
             const oModel = this.getView().getModel("oModel");
             if (!oModel) {
@@ -56,9 +73,14 @@ sap.ui.define([
                 return;
             }
 
+            console.log("oModel: ", oModel);
+
             console.log("Processing select_Maktx with ID:", sId);
 
             const aData = oModel.getProperty("/oData") || [];
+
+            console.log("aData: ", aData);
+
             if (!Array.isArray(aData)) {
                 console.error("oData가 배열이 아닙니다. 데이터 구조를 확인하세요.");
                 return;
