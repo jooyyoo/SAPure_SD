@@ -9,6 +9,9 @@ sap.ui.define([
 
         onInit: function () {
 
+            var oExpandModel = new sap.ui.model.json.JSONModel({ expanded: true });
+            this.getView().setModel(oExpandModel, "expand");
+
 <<<<<<< HEAD
             // expand 모델 초기화 및 뷰에 설정
 =======
@@ -56,6 +59,13 @@ sap.ui.define([
             });
 
             this._startCarouselAutoSlide();
+        },
+
+        onCollapseExpandPress() {
+            const oSideNavigation = this.byId("sideNavigation"),
+                bExpanded = oSideNavigation.getExpanded();
+
+            oSideNavigation.setExpanded(!bExpanded);
         },
 
 <<<<<<< HEAD
