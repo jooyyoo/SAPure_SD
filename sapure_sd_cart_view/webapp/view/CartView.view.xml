@@ -1,0 +1,122 @@
+<mvc:View controllerName="zc503sd.gw0011.sapuresdcartview.controller.CartView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:card="sap.f.cards"
+    xmlns:tnt="sap.tnt">
+    <Panel height="100%" width="100%" class = "PanelBack">
+    <tnt:ToolPage id="ToolPageDemo">
+        <!-- Header -->
+        <tnt:header>
+            <tnt:ToolHeader>
+                <Button icon="sap-icon://home" tooltip="Home" type="Transparent" press="refreshPage"/>
+                <Title text="{i18n>title}" class="sapUiTinyMarginBegin" />
+                <ToolbarSpacer />
+                <Button text="제품" type="Transparent" />
+                <Button text="SAPure 매장" type="Transparent" />
+                <Button text="서비스" type="Transparent" />
+                <Button text="이벤트/혜택" type="Transparent" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://search" tooltip="Search" type="Transparent" />
+                <Button icon="sap-icon://person-placeholder" tooltip="User Profile" type="Transparent" />
+                <Button icon="sap-icon://cart" tooltip="Shopping Cart" type="Transparent" />
+            </tnt:ToolHeader>
+        </tnt:header>
+        
+        <tnt:mainContents>
+            <Toolbar>
+                <CheckBox
+                    text="전체 선택"
+                    selected="{= ${cart>/allSelected} }"
+                    select="onParentClicked" />
+                <Button text="선택 삭제" press="onDeleteItem" />
+            </Toolbar>
+            
+            <FlexBox direction="Row" width="100%" alignItems="Start">
+                <!-- 장바구니 리스트 -->
+                <VBox width="70%" height="600px" class="sapUiSmallMargin">
+                    <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                        <List items="{cart>/PaySet}" mode="MultiSelect" id="listId" width="100%" selectionChange="onSelectionChange">
+                            <CustomListItem selected="true" class="custom-list-item" >
+                                <HBox>
+                                    <!-- 제품 이미지 -->
+                                    <Image src="{cart>Image}" width="5rem" height="5rem" />
+                                    <!-- 제품 정보 -->
+                                    <VBox width="100%" class="sapUiSmallMarginBegin">
+                                        <Title text="{cart>Matnr}" level="H5" />
+                                        <HBox>
+                <!-- 할인 퍼센트 -->
+                <Text text="{cart>percent}% 할인" class="discount-percentage" />
+                <!-- 원래 가격 -->
+                <Text text="{parts: [{path: 'cart>TotalNetpr'}, {value: 'KRW'}], type: 'sap.ui.model.type.Currency'}" 
+                      class="original-price" />
+            </HBox>
+
+            <!-- 판매 가격 -->
+            <HBox alignItems="Center">
+                <Text text="{parts: [{path: 'cart>TotalSale'}, {value: 'KRW'}], type: 'sap.ui.model.type.Currency'}" 
+                      class="sale-price" />
+            </HBox>
+                                        <!-- StepInput -->
+                                        <StepInput 
+                                            value="{cart>Wmeng}" 
+                                            min="1" 
+                                            max="100" 
+                                            change="onQuantityChange" 
+                                            width="10rem" 
+                                            textAlign="Center"/>
+                                    </VBox>
+                                </HBox>
+                            </CustomListItem>
+                        </List>
+                    </ScrollContainer>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiSmallMargin">
+                <ToolbarSpacer width="1rem"></ToolbarSpacer>
+                <!-- 결제 정보 카드 -->
+                <f:Card width="330px">
+                    <f:header>
+                        <card:Header title="결제정보" iconSrc="sap-icon://cart" />
+                    </f:header>
+                    <f:content>
+        <VBox>
+            <!-- 상품금액 -->
+            <HBox>
+                <Text text="총 상품가격:" width="150px" class="sapUiSmallMarginBegin" />
+                <Text text="{parts: [{path: 'cart>/TotalPrice'}, {value: 'KRW'}], type: 'sap.ui.model.type.Currency'}"  width="150px" textAlign="End" />
+            </HBox>
+
+            <!-- 할인금액 -->
+            <HBox>
+                <Text text="총 할인금액:" width="150px" class="sapUiSmallMarginBegin" />
+                <Text text="{parts: [{path: 'cart>/TotalSale'}, {value: 'KRW'}], formatter: '.formatDiscount'}" width="150px" textAlign="End" class="discount-text" />
+            </HBox>
+
+            <!-- 배송비 -->
+            <HBox>
+                <Text text="배송비:" width="150px" class="sapUiSmallMarginBegin" />
+                <Text text="{parts: [{path: 'cart>/ShippingFee'}, {value: 'KRW'}], type: 'sap.ui.model.type.Currency'}" 
+                      width="150px" textAlign="End" />
+            </HBox>
+
+            <!-- 총 결제 금액 -->
+            <HBox>
+                <Text text="총 결제금액:" width="150px" class="sapUiSmallMarginBegin payment-card-total" />
+                <Text text="{parts: [{path: 'cart>/FinalPrice'}, {value: 'KRW'}], type: 'sap.ui.model.type.Currency'}" 
+                      width="150px" textAlign="End" class="payment-card-total" />
+            </HBox>
+
+            <!-- 결제하기 버튼 -->
+            <HBox justifyContent="Center" class="sapUiSmallMarginTop">
+                <Button text="결제하기" press="onCheckout" type="Emphasized" />
+            </HBox>
+        </VBox>
+    </f:content>
+                </f:Card>
+                </VBox>
+            </FlexBox>
+        </tnt:mainContents>
+    </tnt:ToolPage>
+    </Panel>
+</mvc:View>
