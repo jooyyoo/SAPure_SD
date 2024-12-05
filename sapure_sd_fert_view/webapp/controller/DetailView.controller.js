@@ -9,13 +9,15 @@ sap.ui.define([
 
         onInit: function () {
 
+<<<<<<< HEAD
+            // expand 모델 초기화 및 뷰에 설정
+=======
+>>>>>>> a40ff916d60f852d55034333381ad574436407bf
+            var oExpandModel = new sap.ui.model.json.JSONModel({ expanded: true });
+            this.getView().setModel(oExpandModel, "expand");
+
             const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.getRoute("RouteDetailView").attachPatternMatched(this._onObjectMatched, this);
-
-            // JSON 모델 설정 (이미지 데이터)
-            const oImageModel = new sap.ui.model.json.JSONModel();
-            oImageModel.loadData("model/images.json");
-            this.getView().setModel(oImageModel, "imageModel");
 
             // OData 모델 설정 (DetailSet 데이터)
             const oODataModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZC503SDCDS0002_CDS/");
@@ -26,10 +28,17 @@ sap.ui.define([
 
             oODataModel.read("/DetailSet", {
                 success: function (OData) {
-                    console.log("DetailSet data loaded:", OData.results);
+
+                    var sortedData = OData.results.sort(function (a, b) {
+                        if (a.Matnr < b.Matnr) return -1; // Matnr 기준 오름차순
+                        if (a.Matnr > b.Matnr) return 1;
+                        return 0;
+                    });
+
+                    console.log("DetailSet data after sorting:", sortedData);
 
                     // JSON 모델에 데이터 설정
-                    oModel.setData({ oData: OData.results });
+                    oModel.setData({ oData: sortedData });
                     this.getView().setModel(oModel, "oModel");
 
                     // 데이터 로드 완료 플래그 설정
@@ -49,6 +58,20 @@ sap.ui.define([
             this._startCarouselAutoSlide();
         },
 
+<<<<<<< HEAD
+        onAddToCart: function () {
+            sap.m.MessageToast.show("장바구니에 추가되었습니다!");
+        },
+
+=======
+>>>>>>> a40ff916d60f852d55034333381ad574436407bf
+        onCollapseExpandPress() {
+            const oSideNavigation = this.byId("sideNavigation"),
+                bExpanded = oSideNavigation.getExpanded();
+
+            oSideNavigation.setExpanded(!bExpanded);
+        },
+
         processSelectMaktx: function (sId) {
             const oModel = this.getView().getModel("oModel");
             if (!oModel) {
@@ -56,18 +79,25 @@ sap.ui.define([
                 return;
             }
 
+            console.log("oModel: ", oModel);
+
             console.log("Processing select_Maktx with ID:", sId);
 
             const aData = oModel.getProperty("/oData") || [];
+
+            console.log("aData: ", aData);
+
             if (!Array.isArray(aData)) {
                 console.error("oData가 배열이 아닙니다. 데이터 구조를 확인하세요.");
                 return;
             }
 
             let sDes = "";
+            let sAmount = "";
             for (let i = 0; i < aData.length; i++) {
                 if (sId === aData[i].Matnr) {
                     sDes = aData[i].Maktx;
+                    sAmount = aData[i].Netpr
                     break;
                 }
             }
@@ -75,6 +105,7 @@ sap.ui.define([
             if (sDes) {
                 oModel.setProperty("/selectedId", sId);
                 oModel.setProperty("/selectedDes", sDes);
+                oModel.setProperty("/selectedAmount", sAmount);
                 console.log("Description 설정 완료:", sDes);
             } else {
                 console.warn("주어진 ID와 일치하는 데이터를 찾을 수 없습니다.");

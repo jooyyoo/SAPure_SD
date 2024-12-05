@@ -79,7 +79,7 @@ sap.ui.define([
                 vConfirmPassword = this.byId("confirmPasswordInput").getValue().trim(),
                 vName = this.byId("nameInput").getValue().trim(),
                 vEmail = this.byId("emailInput").getValue().trim(),
-                vPhone = this.byId("phoneInput").getValue().trim(),
+                vPhone = this.byId("phoneInput").getValue().trim().replaceAll('-',''),
                 vZipCode = this.byId("addrnumInput").getValue().trim(), // 우편번호
                 vAddress = this.byId("addressInput").getValue().trim(); // 주소
 
@@ -120,7 +120,8 @@ sap.ui.define([
                 Password: vPassword,
                 Name: vName,
                 Email: vEmail,
-                Phone: vPhone,
+                Phone: vPhone.substr(0,3) + "-" + vPhone.substr(3,4) + "-"
+                    + vPhone.substr(7,4),
                 Addr: vFullAddress // 결합된 주소
                 // Addr: vAddress  // 주소
             };
