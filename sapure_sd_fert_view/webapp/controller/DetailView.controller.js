@@ -8,14 +8,6 @@ sap.ui.define([
     return Controller.extend("zc503sd.gw0001.sapuresdfertview.controller.DetailView", {
 
         onInit: function () {
-
-            var oExpandModel = new sap.ui.model.json.JSONModel({ expanded: true });
-            this.getView().setModel(oExpandModel, "expand");
-
-<<<<<<< HEAD
-            // expand 모델 초기화 및 뷰에 설정
-=======
->>>>>>> a40ff916d60f852d55034333381ad574436407bf
             var oExpandModel = new sap.ui.model.json.JSONModel({ expanded: true });
             this.getView().setModel(oExpandModel, "expand");
 

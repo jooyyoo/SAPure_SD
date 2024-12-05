@@ -113,15 +113,7 @@
                                                     <Label text="가격 : " class="priceLabel" />
                                                     <Text text="  " class="priceLabel" />
                                                     <Text text="{
-<<<<<<< HEAD
-<<<<<<< HEAD
                                                         parts:[{path:'oModel>/selectedAmount'},{path:'oModel>/oData/0/Waers'}],
-=======
-                                                        parts:[{path:'oModel>/oData/0/Netpr'},{path:'oModel>/oData/0/Waers'}],
->>>>>>> a40ff916d60f852d55034333381ad574436407bf
-=======
-                                                        parts:[{path:'oModel>/oData/0/Netpr'},{path:'oModel>/oData/0/Waers'}],
->>>>>>> a40ff916d60f852d55034333381ad574436407bf
                                                         type: 'sap.ui.model.type.Currency',
                                                         formatOptions: {showMeasure: true }
                                                         }" wrapping="false"  class="priceLabel" />
