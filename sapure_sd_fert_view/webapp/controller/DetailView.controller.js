@@ -60,18 +60,8 @@ sap.ui.define([
             oSideNavigation.setExpanded(!bExpanded);
         },
 
-<<<<<<< HEAD
         onAddToCart: function () {
             sap.m.MessageToast.show("장바구니에 추가되었습니다!");
-        },
-
-=======
->>>>>>> a40ff916d60f852d55034333381ad574436407bf
-        onCollapseExpandPress() {
-            const oSideNavigation = this.byId("sideNavigation"),
-                bExpanded = oSideNavigation.getExpanded();
-
-            oSideNavigation.setExpanded(!bExpanded);
         },
 
         processSelectMaktx: function (sId) {
