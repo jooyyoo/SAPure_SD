@@ -8,14 +8,14 @@ sap.ui.define([
 
         return Controller.extend("zc503sd.gw0004.sapuresdauthview.controller.AuthView", {
             onInit: function () {
-                
+
             },
 
             onPressLogin: function () {
 
                 //서버에서 해당 아이디를 가진 고객을 read
                 let oModel = this.getView().getModel();
-                
+
                 console.log(oModel);
 
                 var id = this.getView().byId('Iid').getValue(),
@@ -47,40 +47,41 @@ sap.ui.define([
                 var password = sap.ui.getCore().byId("DI_pw").getValue();
                 var passwordConfirm = sap.ui.getCore().byId("DI_rpw").getValue();
 
+                let oModel = this.getView().getModel();
+
+                var oUpdate = {
+                    Password: password,
+                };
 
                 if (password !== passwordConfirm) {
                     sap.m.MessageToast.show("비밀번호가 일치하지 않습니다.");
                     return;
                 }
 
-                // 서버로 전송하는 로직 (예시)F
-                let oModel = this.getView().getModel();
-
-                var oUpdate = {
-                    Customer: username,
-                    Email: email,
-                    Password: password,
-                };
-
-                oModel.update
-                    (
-                        "/AuthSet(Customer='" + oUpdate.Customer + "')",
-                        oUpdate,
-                        {
-                            success: function () {
-                                // 서버 응답 성공 시 처리
-
-                                // oModel.refresh()
-                                sap.m.MessageToast.show("비밀번호 재설정이 완료되었습니다.");
-                                this.oResizableDialog.close();
-                            }.bind(this),
-                            error: function (oError) {
-                                // 서버 응답 실패 시 처리
-                                console.log(oUpdate.username);
-                                sap.m.MessageToast.show("서버 오류가 발생했습니다. 다시 시도해주세요.");
-                            }
+                oModel.read("/AuthSet(Customer='" + username + "')", {
+                    success: (oData) => {
+                        if (email !== oData.Email) {
+                            sap.m.MessageToast.show("가입한 이메일이 아닙니다.");
+                        } else {
+                            // 이메일이 일치하는 경우 업데이트 진행
+                            oModel.update(
+                                "/AuthSet(Customer='" + username + "')", oUpdate,
+                                {
+                                    success: () => {
+                                        sap.m.MessageToast.show("비밀번호 재설정이 완료되었습니다.");
+                                        this.oResizableDialog.close(); // 'this'가 유지됨
+                                    },
+                                    error: (oError) => {
+                                        sap.m.MessageToast.show("서버 오류가 발생했습니다. 다시 시도해주세요.");
+                                    }
+                                }
+                            );
                         }
-                    );
+                    },
+                    error: (oError) => {
+                        sap.m.MessageToast.show("Customer not found or error occurred.");
+                    }
+                });
             },
 
             onLinkPress: function () {
@@ -211,7 +212,7 @@ sap.ui.define([
 
             },
 
-            onPressJoin:function(){
+            onPressJoin: function () {
 
                 console.log("회원가입 클릭");
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
